@@ -11,11 +11,10 @@ import { v4 } from "uuid"
 import cors from 'cors'
 import {v2 as cloudinary} from "cloudinary"
 import { getSockets } from "./lib/helper.js"
-import { CHAT_JOINED, CHAT_LEAVED, NEW_MESSAGE, NEW_MESSAGE_ALERT, ONLINE_USERS, START_TYPING, STOP_TYPING } from "../server/constants/events.js"
+import { CHAT_JOINED, CHAT_LEAVED, NEW_MESSAGE, NEW_MESSAGE_ALERT, ONLINE_USERS, START_TYPING, STOP_TYPING } from "./constants/events.js"
 import { Message } from "./models/messgae.model.js"
 import { configOptions } from "./constants/config.js"
 import { SocketAuthenticator } from "./middlewares/auth.js"
-import { set } from "mongoose"
 
 dotenv.config()
 
