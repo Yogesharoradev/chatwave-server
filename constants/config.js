@@ -1,7 +1,7 @@
 
 
 const configOptions = {
-    origin:  [process.env.CLIENT_URL] , 
+    origin: "https://chatwave-frontend.vercel.app", 
     methods  : ["GET", "PUT", "DELETE" , "POST"],
     credentials : true,
 }
