@@ -16,20 +16,22 @@ import { Message } from "./models/messgae.model.js"
 import { configOptions } from "./constants/config.js"
 import { SocketAuthenticator } from "./middlewares/auth.js"
 
-dotenv.config()
+dotenv.config({
+    path: "./.env",
+  })
 
-const userSocketIds = new Map()
 const mongoUrl = process.env.MONOGOURL
 const port = process.env.PORT || 8080
+const userSocketIds = new Map()
 const OnlineUsers = new Set()
 
 const app = express()
-app.use(cors(configOptions))
 const server = createServer(app) 
 const io = new Server(server, { cors : configOptions})
 
 app.set("io" , io)
 
+app.use(cors(configOptions))
 app.use(express.json()) 
 app.use(cookieParser())
 
