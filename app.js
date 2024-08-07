@@ -29,9 +29,9 @@ const io = new Server(server, { cors : configOptions})
 
 app.set("io" , io)
 
+app.use(cors(configOptions))
 app.use(express.json()) 
 app.use(cookieParser())
-app.use(cors(configOptions))
 
 ConnectDb(mongoUrl)
 cloudinary.config({
