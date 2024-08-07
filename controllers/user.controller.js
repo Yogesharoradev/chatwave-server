@@ -14,7 +14,7 @@ const Signup = async (req, res)=>{
     const file = req.file
 
     if (!file || file.length === 0) {
-        return res.status(402).send("No files uploaded");
+        return res.status(402).json({success :false , message :"No files uploaded"});
     }
 
 
@@ -31,8 +31,7 @@ const Signup = async (req, res)=>{
     SendToken( res , newUser , 201 , "user created")
 
    }catch(err){  
-        res.status(500).send("error in signup")
-        console.log(err)
+        return res.status(500).json({success :false , message :"error in signup"});
    }
 }
 
@@ -42,10 +41,10 @@ const Login = async (req, res) => {
         const { username, password } = req.body;
 
         const user = await User.findOne({ username }).select("+password");
-        if (!user) return res.status(400).send("Incorrect username");
+        if (!user) return res.status(400).json({ success :false ,message : "Incorect username"});
 
         const isMatchPass = await bcrypt.compare(password, user.password);
-        if (!isMatchPass) return res.status(400).send("Incorrect password");
+        if (!isMatchPass) return res.status(400).json({ success :false ,message : "incoreect password"});
 
         SendToken(res, user, 200, `Welcome back, ${user.username}`);
     } catch (err) {
