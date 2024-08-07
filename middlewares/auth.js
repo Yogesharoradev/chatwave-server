@@ -5,14 +5,13 @@ const isAuth =(req,res ,next)=>{
 try{    
 
     const token = req.cookies["Chat-token"]
-   if(!token) return  res.status(500).send(" unable to find token")
+   if(!token) return  res.status(500).json({success :false , message : "unable to find token"})
     const decodedData = jwt.verify(token , process.env.JWT_SECRET)
     req.user = decodedData._id
     next()
 
 }catch(err){
-    res.status(500).send("authentication fail")
-    console.log(err)
+    res.status(500).json({success :false , message : "falied authentication"})
 }
 }
 
@@ -21,19 +20,18 @@ const isAdmin =(req,res ,next)=>{
     
         const token = req.cookies["chatwave-admin-token"]
 
-       if(!token) return  res.status(500).send(" unable to find token")
+       if(!token) return  res.status(500).json({success :false , message : "unable to find token"})
 
         const secretKey = jwt.verify(token , process.env.JWT_SECRET)
 
         const adminSecretKey = "anything"
 
         const isMatched = secretKey === adminSecretKey
-        if(!isMatched) return res.status(402).send("unathaothorise")
+        if(!isMatched) return res.status(402).json({success :false , message :" unauthorized"})
         next()
     
     }catch(err){
-        res.status(500).send("authentication fail")
-        console.log(err)
+        res.status(500).json({success :false , message :"unable to find token"})
     }
     }
 
@@ -49,7 +47,6 @@ try{
     return next()
 
 }catch(err){
-    console.log(err)
     return next(err)
 }
 }
