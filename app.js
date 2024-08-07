@@ -20,7 +20,7 @@ dotenv.config()
 
 const userSocketIds = new Map()
 const mongoUrl = process.env.MONOGOURL
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 8080
 const OnlineUsers = new Set()
 
 const app = express()
