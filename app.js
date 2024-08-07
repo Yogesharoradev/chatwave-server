@@ -24,12 +24,12 @@ const port = process.env.PORT || 3000
 const OnlineUsers = new Set()
 
 const app = express()
+app.use(cors(configOptions))
 const server = createServer(app) 
 const io = new Server(server, { cors : configOptions})
 
 app.set("io" , io)
 
-app.use(cors(configOptions))
 app.use(express.json()) 
 app.use(cookieParser())
 
