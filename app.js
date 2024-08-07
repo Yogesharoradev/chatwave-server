@@ -40,9 +40,9 @@ cloudinary.config({
       api_secret :  process.env.CLOUDINARY_API_SECRET,
 })
 
-app.use("/api/v1/user" , userRoute)
-app.use("/api/v1/chat" , chatRoute)
-app.use("/api/v1/admin" , adminRoute)
+app.use("api/v1/user" , userRoute)
+app.use("api/v1/chat" , chatRoute)
+app.use("api/v1/admin" , adminRoute)
 
 
 io.use((socket , next)=>{
