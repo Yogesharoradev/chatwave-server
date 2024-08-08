@@ -262,15 +262,14 @@ const GetAttachments = async (req, res) => {
         }
 
         const Attachments = await UploadCloaudinaryFiles(files);
+        console.log(Attachments)
 
         const MessageForDb = {
             content: "",
-            Attachments,
+            attachments : Attachments,
             sender: me.id,
             chat: chatId
         };
-
-        const message = await Message.create(MessageForDb);
         const MessageForRealTime = {
             ...MessageForDb,
             sender: {
@@ -278,6 +277,7 @@ const GetAttachments = async (req, res) => {
                 name: me.name
             }
         };
+        const message = await Message.create(MessageForDb);
         emitEvent(req, NEW_MESSAGE, chat.members, {
             message: MessageForRealTime,
             chatId

@@ -6,6 +6,7 @@ import multer from "multer";
 })
 
 const SingleAvatarr = multerUpload.single("avatar")
+
 const MultipleAttachments = multerUpload.array("files" , 5)
 
 export {SingleAvatarr , MultipleAttachments}

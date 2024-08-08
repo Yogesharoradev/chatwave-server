@@ -90,8 +90,8 @@ const searchUser =async(req ,res )=>{
 
         const UsersWithmyMessages = myChats.flatMap((chat)=> chat.members)
 
-        const AllUsersNotMyFriends  =await User.find({
-            _id:{$nin : UsersWithmyMessages},
+        const AllUsersNotMyFriends  = await User.find({
+            _id:{$nin : UsersWithmyMessages ,  $ne: req.user},
             name : {$regex : name , $options: "i"}
         })
 
@@ -109,7 +109,7 @@ const searchUser =async(req ,res )=>{
     }catch(err){
         res.status(500).json({
             success: false ,
-            message : name
+            message : "Error in searching"
         })
     }
 }

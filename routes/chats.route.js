@@ -13,11 +13,8 @@ import {
 } from "../controllers/chat.controller.js";
 import {
      ChatIDValidators,
-     GetAttachmentsValidator,
      NameValidators,
      NewGroupChatValidator,
-     RemoveMemberValidator,
-     addMemberValidator,
      errValidate
 } from "../lib/validators.js";
 import { isAuth } from "../middlewares/auth.js";
@@ -36,7 +33,7 @@ app.put("/removemember" ,removeMember)
 
 app.delete("/leave/:id" , leaveGroup)
 
-app.post("/message" , MultipleAttachments ,GetAttachmentsValidator(), errValidate, GetAttachments)
+app.post("/message" , MultipleAttachments , GetAttachments)
 
 app.get("/message/:id" , ChatIDValidators(), errValidate, GetMessages)
 

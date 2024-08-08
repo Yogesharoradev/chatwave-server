@@ -20,7 +20,7 @@ dotenv.config({
     path: "./.env",
   })
 
-const mongoUrl = process.env.MONOGOURL
+const mongoUrl = process.env.MONGOURL
 const port = process.env.PORT || 8080
 const userSocketIds = new Map()
 const OnlineUsers = new Set()
