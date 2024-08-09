@@ -21,6 +21,7 @@ dotenv.config({
   })
 
 const mongoUrl = process.env.MONGOURL
+console.log(mongoUrl)
 const port = process.env.PORT || 8080
 const userSocketIds = new Map()
 const OnlineUsers = new Set()
