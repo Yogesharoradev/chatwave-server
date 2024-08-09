@@ -11,12 +11,16 @@ const options = {
     secure : true
 }
 
-const ConnectDb = (url)=>{
-    mongoose.connect(url , {dbName:"ChatWave" } )
-    .then((data)=> console.log(`connected to Db : ${data.connection.host}`))
-    .catch((err)=>{throw err})
-}
-
+const ConnectDb = async (url) => {
+  try {
+    const data = await mongoose.connect(url, { dbName: "ChatWave" });
+    console.log(`Connected to DB: ${data.connection.host}`);
+    return data;
+  } catch (err) {
+    console.error("Failed to connect to MongoDB:", err.message);
+    throw err;
+  }
+};
 const SendToken =(res , user ,code , message)=>{
     const token = jwt.sign({_id : user._id} , process.env.JWT_SECRET )
     return  res.status(code).cookie("Chat-token" ,token , options).json({
