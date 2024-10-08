@@ -21,6 +21,7 @@ const ConnectDb = async (url) => {
     throw err;
   }
 };
+
 const SendToken =(res , user ,code , message)=>{
     const token = jwt.sign({_id : user._id} , process.env.JWT_SECRET )
     return  res.status(code).cookie("Chat-token" ,token , options).json({

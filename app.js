@@ -21,7 +21,6 @@ dotenv.config({
   })
 
 const mongoUrl = process.env.MONGOURL
-console.log(mongoUrl)
 const port = process.env.PORT || 8080
 const userSocketIds = new Map()
 const OnlineUsers = new Set()
@@ -37,6 +36,7 @@ app.use(express.json())
 app.use(cookieParser())
 
 ConnectDb(mongoUrl)
+console.log(ConnectDb)
 
 cloudinary.config({
       cloud_name : process.env.CLOUDINARY_CLOUD_NAME,
